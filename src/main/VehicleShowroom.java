@@ -14,6 +14,7 @@ public class VehicleShowroom {
     public static void main(String[] args) {
 
         VehicleManager vehicleManager = new VehicleManager();
+        OptionMenu optionMenu = new OptionMenu();
         Scanner scanner = new Scanner(System.in);
 
         while (true){
@@ -40,25 +41,18 @@ public class VehicleShowroom {
 
                     if(option2 == 1){
 
+                        EngineType[] engineTypes = EngineType.values();
                         EngineType engineType;
                         int type;
                         while (true) {
-                            System.out.print("1. Diesel\n2. Gas\n3. Oil\nPlease choose engine type : ");
+                            for(int i=0; i<engineTypes.length; i++)
+                                System.out.println(i+1+". "+engineTypes[i]);
+                            System.out.print("Please choose engine type : ");
                             type = scanner.nextInt();
-                            if(type < 1 || type > 3){
+                            if(type < 1 || type > engineTypes.length){
                                 System.out.println("Invalid option. Please try again.");
                             }else {
-                                switch (type) {
-                                    case 1:
-                                        engineType = EngineType.DIESEL;
-                                        break;
-                                    case 2:
-                                        engineType = EngineType.GAS;
-                                        break;
-                                    default:
-                                        engineType = EngineType.OIL;
-                                        break;
-                                }
+                                engineType = engineTypes[type-1];
                                 break;
                             }
                         }
